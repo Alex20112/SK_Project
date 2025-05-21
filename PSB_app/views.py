@@ -1,8 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from PSB_app.models import Products, STATUS_CHOICES, MENU_CHOICES, Klezh
 
 
-# Create your views here.
+def menu(request):
+    start_list_menu = MENU_CHOICES
+    return render(request, 'start_list_menu.html', {'start_list_menu':start_list_menu})
 
-def Root(request):
-    return HttpResponse('Привет')
+
+def total_list(request):
+    all = Klezh.objects.all().values()
+    return render(request, 'total_list.html', {'all':all})
